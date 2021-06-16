@@ -1,2 +1,2 @@
 heroku ps:scale web=1
-web: python runserver:app
+web: gunicorn runserver:app
