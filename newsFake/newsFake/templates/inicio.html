@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<header id="inicio">
+    <meta charset="utf-8" />
+    <title>Notícias Falsas</title>
+    <style>
+        .bg-1 {
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 25px;
+            background-color: paleturquoise;
+            color: white;
+        }
+        .bg-2 {
+            background-color: #474e5d; /* Dark Blue */
+            color: lightblue;
+        }
+        .container-fluid {
+            padding-top: 70px;
+            padding-bottom: 70px;
+        }
+        body {
+            background-color: white;
+        }
+
+        p {
+            margin-top: 200px;
+        }
+
+        .center {
+            text-align: center;
+            border: 3px solid green;
+        }
+
+        span {
+            display: inline-block;
+            vertical-align: middle;
+            line-height: normal;
+        }
+
+        h2 {
+            margin: 0;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 30px;
+            color: white;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        h3 {
+            margin: 0;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 25px;
+            color: white;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        a {
+            color: goldenrod;
+            text-align: center;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 30px;
+            border: 2px solid blue padding:10px 10px;
+        }
+        .circular--square {
+            border-radius: 50%;
+        }
+        .circular--square {
+            border-top-left-radius: 50% 50%;
+            border-top-right-radius: 50% 50%;
+            border-bottom-right-radius: 50% 50%;
+            border-bottom-left-radius: 50% 50%;
+        }
+    </style>
+</header>
+
+<body>
+    <form align="center">
+        <div class="container-fluid bg-1 text-center">
+            <h2>Detetor de Notícias Falsas</h2>
+
+            <br>
+            <div class="circular--landscape">
+                <img class="gif" src="{{url_for('static', filename='daily.gif')}}" width="200" height="200">
+               </div>
+                </br>
+            </div>
+            <div class="container-fluid bg-2 text-center">
+              
+                <a href="/verifica" class=" btn-outline-primary">
+                    <i class="fas fa-search">Verificar?</i>
+                </a>
+                <span class="glyphicon glyphicon-search"></span>
+            </div>
+
+</form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

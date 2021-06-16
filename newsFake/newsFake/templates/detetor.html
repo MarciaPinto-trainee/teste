@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Detetor de Noticias Falsas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        a {
+            color: darkblue;
+            text-align: center;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 16px;
+            border: 2px solid blue padding:20px 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 34px;
+            color: steelblue;
+            line-height: 1.6;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        legend {
+            text-align: center;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size: 16px;
+            color: rosybrown;
+            border: 2px solid blue padding:20px 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row justify-content-center">
+                <h1>Detetor de Notícias Falsas</h1>
+            </div>
+            <fieldset>
+                <legend>Por favor preenche o título e a descrição</legend>
+</fieldset>
+            <div>
+
+                <div class="form-group">
+                    <label for="title">Título</label>
+                    <input type="text" class="form-control" id="title" placeholder="Escreva o titulo da notícia" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descrição</label>
+                    <input type="text" class="form-control" id="description" placeholder="Escreva a descrição da notícia" required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Categoria</label>
+                    <select name="category" id="category" autofocus class="form-control">
+                        <option value="Selecione uma categoria">Selecione uma categoria:</option>
+                        <option value="Mundo">Mundo</option>
+                        <option value="Notícias">Notícias</option>
+                        <option value="Na Cidade">Na Cidade</option>
+                        <option value="Mercados">Mercados</option>
+                        <option value="Histórias">Histórias</option>
+                        <option value="Covid-19">Covid-19</option>
+                        <option value="Celebridades">Celebridades</option>
+                        <option value="Modalidades">Modalidades</option>
+                        <option value="Desporto">Desporto</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Tecnologia">Tecnologia</option>
+                        <option value="Saúde">Saúde</option>
+                        <option value="Cultura">Cultura</option>
+                        <option value="Dinheiro">Dinheiro</option>
+                    </select>
+                    <small id="category" class="form-text text-muted">Selecione apenas uma categoria.</small>
+                </div>
+                <div class="form-group">
+                    <label for="source">Fonte de Informação da Notícia</label>
+                    <select name="source" id="source" autofocus class="form-control">
+                        <option value="Selecione uma fonte de informação">Selecione uma fonte de informação:</option>
+                        <option value="Bombeiros24.pt">Bombeiros24.pt</option>
+                        <option value="Tuga Press">Tuga Press</option>
+                        <option value="Eu-gosto-e-tu">Eu-gosto-e-tu</option>
+                        <option value="SIC">SIC</option>
+                        <option value="Magazine Lusa">Magazine Lusa</option>
+                        <option value="ZAPAEIOU">ZAPAEIOU</option>
+                        <option value="Correio da Manhã">Correio da Manhã</option>
+                        <option value="Público">Público</option>
+                        <option value="RTP">RTP</option>
+                        <option value="News in Setúbal">News in Setúbal</option>
+                        <option value="TSF">TSF</option>
+                        <option value="Jornal De Negócios">Jornal De Negócios</option>
+                        <option value="Notícias ao Minuto">Notícias ao Minuto</option>
+                    </select>
+                    <small id="source" class="form-text text-muted">Selecione apenas uma fonte de informação.</small>
+                </div>
+                <div class="row justify-content-center">
+                    <button id="predict_button" class="btn btn-dark" style="margin:5px;" onclick="getResult()" value="submit">
+                        <h5> Verificar...</h5>
+                    </button>
+
+                    <br>
+                    <button id="button_delete" class="btn btn-dark" style="margin:5px;" onclick="getDelete()" value="submit">
+                        <h5> Limpar os dados</h5>
+                    </button>
+                    <br>
+                </div>
+                <p id="result" style="color:green; font-size: 20px; font-weight: bold;"></p>
+                {% if result:%}
+                <h5 style="color:red;">
+                    {{result[0]}}
+                </h5>
+                {%elif result:%}
+                <h5 style="color:yellow;">
+                    {{result[1]}}
+                    <img class="png" src="{{url_for('static', filename='noticia-duvidosa.png')}}" width="50" height="50">
+                </h5>
+                {%elif result:%}
+                <h5 style="color:green;">
+                    {{result[0]}}
+                    <img class="png" src="{{url_for('static', filename='noticia-verdadeira.png')}}" width="50" height="50">
+                </h5>
+                {% endif %}
+                <br>
+                <div class="row justify-content-center">
+                    <br>
+                </div>
+                <div class="row justify-content-center">
+                    <a href="/">Pretendes voltar para a página inicial?</a>
+                </div>
+            </div>
+            <!-- Inclusão do jQuery-->
+            <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+            <!-- Inclusão do Plugin jQuery Validation-->
+            <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+            <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+            <script>
+        function getResult() {
+            var titleVal = $('#title').val();
+            var descriptionVal = $('#description').val();
+            var categoryVal = $('#category').val();
+            var sourceVal = $("#source").val();
+            $.ajax({
+                type: "POST",
+                url: "{{url_for('modelofinal')}}",
+                context: this,
+                data: { 'Title': titleVal, 'Description': descriptionVal, 'Category': categoryVal, 'Source': sourceVal },
+                success: function (data) {
+                    $("#result").html(data);
+                }, complete: function () { }
+            });
+        }
+
+            </script>
+            <script>
+                function getDelete() {
+                    document.getElementById('title').value = '';
+                    document.getElementById('description').value = '';
+                    $("#result").html("");
+                }
+            </script>
+
+
+</body>
+
+</html>

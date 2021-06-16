@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<form class="myform" action="/predict" method="POST">
+    <br>
+    <div class="row justify-content-center">
+        <p id="result" style="color:green; font-size: 20px; font-weight: bold;"></p>
+        {% if result[1]=='red': %}
+
+        <h5 style="color:{{result[1]}}">
+            {{result[0]}}
+            <img class="png" src="{{url_for('static', filename='noticia_falsa.png')}}" width="50" height="50" />
+        </h5>
+
+        {%elif result[1]=='brown': %}
+
+        <h5 style="color:{{result[1]}}">
+            {{result[0]}}
+            <img class="png" src="{{url_for('static', filename='noticia-duvidosa.png')}}" width="50" height="50" />
+        </h5>
+
+        {%elif result[1]=='green': %}
+
+        <h5 style="color:{{result[1]}}">
+            {{result[0]}}
+            <img class="png" src="{{url_for('static', filename='noticia-verdadeira.png')}}" width="50" height="50" />
+        </h5>
+
+        {% endif %}
+
+    </div>
+</form>
+</html>
