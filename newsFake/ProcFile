@@ -1,1 +1,1 @@
-web: gunicorn runserver:app --preload
+web: python runserver.py runserver 0.0.0.0:5000
