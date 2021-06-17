@@ -10,10 +10,10 @@ import webbrowser
 
 if __name__ == '__main__':
   
-   port = 5000 
-   url = "http://127.0.0.1:%s/".format(port)
-   app.run(port=port, debug=False)
-  # app.run()
+   #port = 5000 
+   #url = "http://127.0.0.1:%s/".format(port)
+   #app.run(port=port, debug=False)
+   app.run()
    #HOST = environ.get('SERVER_HOST', 'localhost')
     #try:
     # PORT = int(environ.get('SERVER_PORT', '5555'))
